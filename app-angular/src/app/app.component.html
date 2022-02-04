@@ -1,0 +1,47 @@
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">
+      Listado de películas
+  </a>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mt-4">
+      <ul class="list-group">
+        <li *ngFor="let films of filmsArray"
+            class="list-group-item list-group-item-action"
+            (click)="openForEdit(films)"
+            [class.active]="films == selectedFilm">
+            
+            <span>{{ films.id }}</span> {{ films.name }} - {{films.director}} </li>
+
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            Inserta una nueva película
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedFilm.name" placeholder="Inserta un título de película" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedFilm.director" placeholder="Inserta su director" class="form-control">
+          </div>
+          <button (click)="addOrEdit()" class="btn btn-primary">
+            Submit
+          </button>
+          <button 
+            *ngIf="selectedFilm.id !== 0"
+            class="btn btn-danger"
+            (click)="delete()">
+            Delete
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
